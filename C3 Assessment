@@ -1,0 +1,62 @@
+---
+variable name: BHperson_info
+use objects: True
+data:
+  - First Name: Brayden 
+    Last Name: Howard
+    Age: 24
+    Hobbies: Gaming, legal research & gym
+    Do you like pets?: True
+  - First Name: Anne 
+    Last Name: Howard
+    Age: 49
+    Hobbies: Exercising, sailing, movies
+    Do you Like pets?: True
+  - First Name: Lachlan
+    Last Name: Howard
+    Age: 22
+    Hobbies: Gaming & partying
+    Do you like pets?: True
+---
+---
+code: |
+  BHpersonal_info_dnu = [
+    {'Name':'Brayden Howard', 'Age':24, 'Hobbies':'gaming, legal research & gym', 'do you like pets':True},
+    {'Name':'Lachlan Howard', 'Age':22, 'Hobbies':'gaming & partying', 'do you like pets':True},
+    {'Name':'Anne Howard', 'Age':49, 'Hobbies':'Exercising, sailiing, movies', 'do you like pets':True}, 
+  ]
+---
+mandatory: True
+question:  Data table as a table
+subquestion: |
+  #### Our data was a table.  Now we make it a table again!
+  
+  ${ BHcolumn_header }
+  ${ BHdashes }
+  %for BHitem in BHtable_rows:
+  ${ BHitem }
+  %endfor
+---
+code: |
+  BHcolumn_header = ""
+
+  for BHitem in BHperson_info[0]:
+    BHcolumn_header += BHitem + '|'
+  
+  BHcolumn_header = BHcolumn_header[:-1]
+---
+code: |
+  BHdashes = "---"
+  for i in range(len(BHperson_info[0]) - 1):
+    BHdashes += "|---"
+---
+code: | 
+  BHtable_rows = []
+  
+  for BHitem in BHperson_info:
+      MDrow = ""
+      for BHkey in BHitem:
+        MDrow += str(BHitem[BHkey]) + '|'
+      MDrow = MDrow[:-1]
+      BHtable_rows.append(MDrow)
+---
