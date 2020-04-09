@@ -27,7 +27,7 @@ code: |
   ]
 ---
 mandatory: True
-question:  Data table as a table
+question:  Data table Information
 subquestion: |
   #### Our data was a table.  Now we make it a table again!
   
